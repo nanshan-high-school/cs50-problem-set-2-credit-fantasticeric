@@ -1,6 +1,5 @@
 #include <iostream>
 using namespace std;
-int Array(long int number, int i);
 int count(long int number);
 int total(int COUNT[16], int i);
 int top_number(int COUNT[16], int k, int times);
