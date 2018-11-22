@@ -1,26 +1,27 @@
 #include <iostream>
 using namespace std;
+const int COUNT = 16;
 int count(long int number);
-int total(int COUNT[16], int i);
-int top_number(int COUNT[16], int k, int times);
+int total(int card[COUNT], int i);
+int top_number(int card[COUNT], int k, int times);
 int main() {
   long int number_0, number_1;
   int i, sum_0 = 0, master_2, master_5, visa_4;
-  int COUNT[16];
+  int card[COUNT];
   cout << "請輸入您的信用卡卡號:";
   cin >> number_0;
   number_1 = number_0;
   i = count(number_0);
   for(int j = 0 ; j < i ; j++)
     {
-      COUNT[j] = number_1 % 10;
+      card[j] = number_1 % 10;
       number_1 /= 10;
     }
-  sum_0 = total(COUNT, i);
-  master_2 = top_number(COUNT, i, 6);
-  master_5 = top_number(COUNT, i, 2);
-  visa_4 = top_number(COUNT, i, 1);
-  if(10 - sum_0 % 10 != COUNT[0] && 10 - sum_0 % 10 != 10)
+  sum_0 = total(card, i);
+  master_2 = top_number(card, i, 6);
+  master_5 = top_number(card, i, 2);
+  visa_4 = top_number(card, i, 1);
+  if(10 - sum_0 % 10 != card[0] && 10 - sum_0 % 10 != 10)
    cout << "假卡";
   else if(visa_4 == 4)
     cout << "Visa Card";
@@ -33,14 +34,14 @@ int main() {
   }
 
 //計算卡號加權總合  
-int total(int COUNT[16], int i)
+int total(int card[COUNT], int i)
   {
     
     int a=0, b=0, sum_0=0;
      for(int j = 1 ; j < i ; j++)
      {
       a = j % 2 + 1;
-      b = COUNT[j] * a / 10 + COUNT[j] * a % 10;
+      b = card[j] * a / 10 + card[j] * a % 10;
       sum_0 += b;
      }
     return sum_0;
@@ -59,7 +60,7 @@ int count(long int number)
   }
 
 //取卡號前幾位數
-int top_number(int COUNT[16], int k, int times)
+int top_number(int card[COUNT], int k, int times)
   {
     int top_number_1 = 0;
     for(int i = 0 ; i < times ; i++)
@@ -69,9 +70,7 @@ int top_number(int COUNT[16], int k, int times)
       {
         power *= 10;
       }
-      top_number_1 += COUNT[k-1-i] * power;
+      top_number_1 += card[k-1-i] * power;
     }
     return top_number_1; 
   }
-
-
